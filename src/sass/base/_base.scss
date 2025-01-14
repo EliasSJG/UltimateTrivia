@@ -1,0 +1,11 @@
+@use "../abstracts/variables" as *;
+
+body {
+  background-image: linear-gradient(
+    $primary-gradientcolorblue,
+    $primary-gradientcolorpurlple
+  );
+
+  height: 100vh;
+  min-height: 100vh;
+}
