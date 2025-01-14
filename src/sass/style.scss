@@ -4,9 +4,8 @@
 @use "abstracts/variables";
 @use "base/typography";
 @use "base/reset";
+@use "base/base";
 @use "components/buttons";
-@use "pages/app";
+@use "pages/question";
 @use "pages/start";
-@use "utilities/spacing";
-@use "utilities/borders";
-@use "utilities/colors";
+@use "pages/choice";
