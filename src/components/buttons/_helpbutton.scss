@@ -1,0 +1,6 @@
+@use "../../style/abstracts/mixins" as *;
+.helpline {
+  @include button(15px);
+  height: 4.5rem;
+  width: 4.5rem;
+}

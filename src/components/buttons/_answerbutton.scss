@@ -1,0 +1,5 @@
+@use "../../style/abstracts/mixins" as *;
+.answerbutton {
+  @include button;
+  padding: 1rem 7rem;
+}

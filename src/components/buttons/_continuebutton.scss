@@ -1,4 +1,6 @@
-@use "../../style/base/typography" as *;
-button {
-  padding: 0.5rem 3rem;
+@use "../../style/abstracts/mixins" as *;
+
+.continuebutton {
+  @include button;
+  padding: 0.25em 3rem;
 }
