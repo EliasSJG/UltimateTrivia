@@ -1,4 +1,37 @@
+@use "../../style/abstracts/variables" as *;
+
 button {
-  font-size: 1.5rem;
-  // IMPORT QUCKSAND font-family: ;
+  font-size: 1.25rem;
+  font-family: $interactive-font;
+  font-weight: $font-weight;
+}
+
+h1 {
+  font-size: 5rem;
+  font-family: $heading-font;
+  color: white;
+
+  -webkit-text-stroke-width: 12px;
+  -webkit-text-stroke-color: black;
+  paint-order: stroke fill;
+  color: white;
+}
+
+p {
+  font-family: $text-font;
+  font-size: 1.25rem;
+  color: white;
+  font-weight: $font-weight;
+}
+
+select {
+  font-family: $interactive-font;
+  font-weight: $font-weight;
+  font-size: 1.25rem;
+}
+
+option {
+  font-family: $interactive-font;
+  font-weight: $font-weight;
+  font-size: 1.25rem;
 }
