@@ -14,17 +14,3 @@ export type Question = {
   regions: any[];
   isNiche: boolean;
 };
-
-//Category
-export type Category = {
-  ArtsLiterature: string[];
-  FilmTV: string[];
-  FoodDrink: string[];
-  GeneralKnowledge: string[];
-  Geography: string[];
-  History: string[];
-  Music: string[];
-  Science: string[];
-  SocietyCulture: string[];
-  SportLeisure: string[];
-};

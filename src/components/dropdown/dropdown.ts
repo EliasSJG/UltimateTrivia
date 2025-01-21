@@ -1,6 +1,6 @@
 import "./_dropdown.scss";
 import { getQuestion, getCategory } from "../../api/api";
-
+import categoryCorrection from "../../state/state";
 //DOM Elements
 export const selectQuestion = document.getElementById(
   "getquestion"
@@ -29,8 +29,10 @@ export const changeQuestions = async () => {
   const difficulty = selectDifficulty.value;
   const category = selectCategory.value;
 
-  if (difficulty && category) {
-    const questions = await getQuestion(difficulty, category);
+  const correctCategory = categoryCorrection[category];
+
+  if (difficulty && correctCategory) {
+    const questions = await getQuestion(difficulty, correctCategory);
     console.log(questions);
     selectQuestion.innerHTML = "";
 

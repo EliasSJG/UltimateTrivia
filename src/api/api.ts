@@ -1,4 +1,4 @@
-import { Questions, Category, Question } from "../typings/typings";
+import { Questions, Question } from "../typings/typings";
 
 //the diffrent api endpoints
 
