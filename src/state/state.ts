@@ -10,5 +10,6 @@ const categoryCorrection: { [key: string]: string } = {
   Music: "music",
   Science: "science",
 };
+
 //Might then sperate them so for example sport is its own category and leisure is its own.
 export default categoryCorrection;
