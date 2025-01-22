@@ -1,12 +1,15 @@
 @use "../../style/abstracts/variables" as *;
 
-button {
+.continuebutton {
   font-size: 1.25rem;
   font-family: $interactive-font;
   font-weight: $font-weight;
 }
 
-h1 {
+.answerbutton {
+  font-size: 1.25rem;
+}
+.main-title {
   font-size: 5rem;
   font-family: $heading-font;
   color: white;
@@ -17,7 +20,7 @@ h1 {
   color: white;
 }
 
-p {
+.description-text {
   font-family: $text-font;
   font-size: 1.25rem;
   color: white;
