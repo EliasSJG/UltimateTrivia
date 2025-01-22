@@ -40,3 +40,5 @@ export const getQuestion = async (
   const data = await response.json();
   return data;
 };
+
+//Behöver en extra endpoint, antigen ta difficulty till dropdown eller hitta en annan endpoint som finns
