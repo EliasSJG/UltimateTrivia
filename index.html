@@ -6,24 +6,42 @@
     <title>ULTIMATE TRIVIA</title>
   </head>
   <body>
-    <div id="app"></div>
-    <script type="module" src="/src/main.ts"></script>
-    <button class="continuebutton">Continue</button>
-    <h1>THE ULTIMATE TRIVIA</h1>
-    <p>HELLO</p>
-    <button class="answerbutton">Answer 1</button>
+    <div id="start">
+      <h1 class="main-title">THE ULTIMATE TRIVIA</h1>
+      <p class="description-text">
+        The Ultimate Trivia, powered by The Trivia API, puts players in control
+        of their experience. Choose categories, questions, and difficulty
+        levels, where harder questions earn higher rewards. To win, answer 15
+        questions (5 easy, 5 medium, 5 hard) in any order. Classic lifelines
+        like 50/50, Ask a Friend, Ask the Audience, and Switch the Question add
+        strategy and excitement. Players can quit anytime to secure their
+        winnings or risk it all for bigger rewards.
+      </p>
+      <button id="next-page-choice" class="continuebutton">Continue</button>
+    </div>
+
+    <!--
+     <button class="answerbutton">Answer 1</button>
     <button class="answerbutton">Answer 2</button>
     <button class="answerbutton">Answer 3</button>
     <button class="answerbutton">Answer 4</button>
+-->
 
-    <select name="getcategory" id="getcategory">
-      <option value="" disabled selected>Select a category</option>
-    </select>
-    <!-- Create dynamic later-->
-    <select name="getdifficulty" id="getdifficulty">
-      <option value="" disabled selected>Select a difficulty</option>
-    </select>
-    <select name="getquestion" id="getquestion"></select>
-    <button class="helpline">Img</button>
+    <div id="choice">
+      <select name="getcategory" id="getcategory">
+        <option value="" disabled selected>Select a category</option>
+      </select>
+      <!-- Create dynamic later-->
+      <select name="getdifficulty" id="getdifficulty">
+        <option value="" disabled selected>Select a difficulty</option>
+      </select>
+      <select name="getquestion" id="getquestion"></select>
+      <button class="continuebutton">Continue</button>
+
+      <!--
+  <button class="helpline">Img</button>
+-->
+    </div>
+    <script type="module" src="/src/main.ts"></script>
   </body>
 </html>

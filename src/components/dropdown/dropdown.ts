@@ -25,6 +25,14 @@ export const populateCategories = async () => {
   });
 };
 
+selectCategory.addEventListener("change", async () => {
+  selectCategory.disabled = true;
+});
+selectDifficulty.addEventListener("change", async () => {
+  selectDifficulty.disabled = true;
+});
+
+selectDifficulty;
 export const populateDifficulties = async () => {
   const difficulties = await getDifficulty();
 

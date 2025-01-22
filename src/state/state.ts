@@ -13,3 +13,4 @@ const categoryCorrection: { [key: string]: string } = {
 
 //Might then sperate them so for example sport is its own category and leisure is its own.
 export default categoryCorrection;
+//Gonna need state for the prize pot.
