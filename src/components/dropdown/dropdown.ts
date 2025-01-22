@@ -1,5 +1,5 @@
 import "./_dropdown.scss";
-import { getQuestion, getCategory } from "../../api/api";
+import { getQuestion, getCategory, getDifficulty } from "../../api/api";
 import categoryCorrection from "../../state/state";
 //DOM Elements
 export const selectQuestion = document.getElementById(
@@ -22,6 +22,16 @@ export const populateCategories = async () => {
     const opt = document.createElement("option");
     opt.innerHTML = cate;
     selectCategory?.appendChild(opt);
+  });
+};
+
+export const populateDifficulties = async () => {
+  const difficulties = await getDifficulty();
+
+  difficulties.forEach((difficulty) => {
+    const opt = document.createElement("option");
+    opt.innerHTML = difficulty;
+    selectDifficulty.appendChild(opt);
   });
 };
 
