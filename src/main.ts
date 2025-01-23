@@ -1,19 +1,5 @@
 import "./main.scss";
 
-import {
-  changeQuestions,
-  selectCategory,
-  selectDifficulty,
-  populateCategories,
-  populateDifficulties,
-} from "./components/dropdown/dropdown";
-import {
-  renderChoicePage,
-  nextPageChoice,
-} from "./components/buttons/continuebutton";
+import { renderChoicePage, nextPageChoice } from "./pages/choice/choice";
 
-await populateCategories();
-await populateDifficulties();
-selectCategory.addEventListener("change", changeQuestions);
-selectDifficulty.addEventListener("change", changeQuestions);
 nextPageChoice.addEventListener("click", renderChoicePage);
