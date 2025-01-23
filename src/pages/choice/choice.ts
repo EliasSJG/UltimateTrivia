@@ -24,20 +24,17 @@ export const renderChoicePage = () => {
   choice.id = "choice";
   choice.classList.add("choice-layout");
 
-  const categorySelect = document.createElement("select");
+  const categorySelect = document.createElement("button");
   categorySelect.id = "getcategory";
-  categorySelect.innerHTML =
-    '<option value="" disabled selected>Select a category</option>';
+  categorySelect.classList.add("custom-dropdown");
 
-  const difficultySelect = document.createElement("select");
+  const difficultySelect = document.createElement("button");
   difficultySelect.id = "getdifficulty";
-  difficultySelect.innerHTML =
-    '<option value="" disabled selected>Select a difficulty</option>';
+  difficultySelect.classList.add("custom-dropdown");
 
-  const questionSelect = document.createElement("select");
+  const questionSelect = document.createElement("button");
   questionSelect.id = "getquestion";
-  questionSelect.innerHTML =
-    '<option value="" disabled selected>Select a question</option>';
+  questionSelect.classList.add("custom-dropdown");
 
   const continueButton = document.createElement("button");
   continueButton.classList.add("continuebutton");
@@ -53,14 +50,16 @@ export const renderChoicePage = () => {
     continueButton
   );
 
+  console.log(selectCategory, selectDifficulty);
   document.body.appendChild(choice);
 
   start.style.display = "none";
   loadDropdowns();
 
   populateCategories();
+  console.log("Categories populated");
   populateDifficulties();
-
-  selectCategory.addEventListener("change", changeQuestions);
-  selectDifficulty.addEventListener("change", changeQuestions);
+  console.log("Difficulties populated");
+  selectCategory.addEventListener("click", changeQuestions);
+  selectDifficulty.addEventListener("click", changeQuestions);
 };
