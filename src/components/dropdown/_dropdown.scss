@@ -1,4 +1,4 @@
-select {
+.custom-dropdown {
   border-radius: 3rem;
   padding: 0.5rem;
   border: none;
@@ -14,4 +14,14 @@ select:focus {
   outline: none;
 }
 
-//dropdwon wont work whatever i do. It exeeds the screen and cant reduce it at all. Might have to do a custom dropdown.
+// .custom-option-div {
+//   //maybe change styling
+// }
+.custom-option {
+  transition: background-color 0.3s ease-in;
+}
+
+.custom-option:hover {
+  background-color: #d8d8d8;
+  cursor: pointer;
+}

@@ -1,4 +1,4 @@
-import { Questions, Question } from "../typings/typings";
+import { Question } from "../typings/typings";
 
 //the diffrent api endpoints
 
