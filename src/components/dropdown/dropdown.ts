@@ -1,18 +1,34 @@
 import "./_dropdown.scss";
 import { getQuestion, getCategory, getDifficulty } from "../../api/api";
 import categoryCorrection from "../../state/state";
+
 //DOM Elements
-export const selectQuestion = document.getElementById(
-  "getquestion"
-) as HTMLSelectElement;
 
-export const selectDifficulty = document.getElementById(
-  "getdifficulty"
-) as HTMLSelectElement;
+export let selectQuestion: HTMLSelectElement;
+export let selectDifficulty: HTMLSelectElement;
+export let selectCategory: HTMLSelectElement;
 
-export const selectCategory = document.getElementById(
-  "getcategory"
-) as HTMLSelectElement;
+export const loadDropdowns = () => {
+  selectQuestion = document.getElementById("getquestion") as HTMLSelectElement;
+
+  selectDifficulty = document.getElementById(
+    "getdifficulty"
+  ) as HTMLSelectElement;
+
+  selectCategory = document.getElementById("getcategory") as HTMLSelectElement;
+
+  selectCategory.addEventListener("change", async () => {
+    selectCategory.disabled = true;
+  });
+  selectDifficulty.addEventListener("change", async () => {
+    selectDifficulty.disabled = true;
+  });
+
+  selectQuestion.addEventListener("change", async () => {
+    selectQuestion.disabled = true;
+  });
+};
+
 //TYPA UPP
 export const populateCategories = async () => {
   const categories = await getCategory();
@@ -25,14 +41,6 @@ export const populateCategories = async () => {
   });
 };
 
-selectCategory.addEventListener("change", async () => {
-  selectCategory.disabled = true;
-});
-selectDifficulty.addEventListener("change", async () => {
-  selectDifficulty.disabled = true;
-});
-
-selectDifficulty;
 export const populateDifficulties = async () => {
   const difficulties = await getDifficulty();
 

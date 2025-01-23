@@ -1,11 +1,17 @@
 select {
-  padding: 0.5rem 8rem;
   border-radius: 3rem;
+  padding: 0.5rem;
   border: none;
   cursor: pointer;
   box-shadow: 2px 2px 2px;
+  margin-bottom: 3rem;
+  width: 440px;
+
+  text-align-last: center;
 }
 
 select:focus {
   outline: none;
 }
+
+//dropdwon wont work whatever i do. It exeeds the screen and cant reduce it at all. Might have to do a custom dropdown.

@@ -3,6 +3,4 @@
 .continuebutton {
   @include button;
   padding: 0.25em 3rem;
-  display: flex;
-  justify-content: center;
 }
