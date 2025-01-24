@@ -2,6 +2,7 @@
 export type Questions = Question[];
 
 export type Question = {
+  forEach(arg0: (question: any) => void): unknown;
   category: string;
   id: string;
   correctAnswer: string;
