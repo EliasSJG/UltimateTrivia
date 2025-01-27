@@ -1,0 +1,22 @@
+#question {
+  display: flex;
+  flex-direction: column;
+  margin-top: 2rem;
+  align-items: center;
+  flex-wrap: wrap;
+  align-content: center;
+}
+
+.helpline-div {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  grid-gap: 140px;
+  margin-bottom: 50px;
+}
+
+.answer-div {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-gap: 80px;
+}
+//Gör snyggare, ungefär så ska det se ut men det är dålig kod

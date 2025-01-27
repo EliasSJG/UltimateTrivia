@@ -1,5 +1,9 @@
 import "./main.scss";
 
-import { renderChoicePage, nextPageChoice } from "./pages/choice/choice";
+import {
+  renderChoicePage,
+  continueToChoiceButton,
+} from "./pages/choice/choice";
 
-nextPageChoice.addEventListener("click", renderChoicePage);
+continueToChoiceButton.addEventListener("click", renderChoicePage);
+//create a file just for rendering

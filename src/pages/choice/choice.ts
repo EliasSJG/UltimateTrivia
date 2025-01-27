@@ -8,15 +8,19 @@ import {
   selectCategory,
   selectDifficulty,
 } from "../../components/dropdown/dropdown";
+import {
+  renderChoiceButton,
+  renderQuestionButton,
+} from "../../components/buttons/continuebutton";
+import { renderQuestionPage } from "../question/question";
 
-export const nextPageChoice = document.querySelector(
-  "#next-page-choice"
-) as HTMLButtonElement;
+export const continueToChoiceButton = renderChoiceButton();
+const start = document.querySelector("#start") as HTMLDivElement;
+start.append(continueToChoiceButton);
 
 export const renderChoicePage = () => {
   const heading = document.createElement("h1") as HTMLHeadingElement;
   const choice = document.createElement("div") as HTMLDivElement;
-  const start = document.querySelector("#start") as HTMLDivElement;
 
   heading.classList.add("main-title");
   heading.innerHTML = "Choose Your Question";
@@ -36,9 +40,7 @@ export const renderChoicePage = () => {
   questionSelect.id = "getquestion";
   questionSelect.classList.add("custom-dropdown");
 
-  const continueButton = document.createElement("button");
-  continueButton.classList.add("continuebutton");
-  continueButton.innerHTML = "Continue";
+  const continueToQuestionButton = renderQuestionButton();
 
   choice.style.display = "flex";
 
@@ -47,19 +49,19 @@ export const renderChoicePage = () => {
     categorySelect,
     difficultySelect,
     questionSelect,
-    continueButton
+    continueToQuestionButton
   );
 
-  console.log(selectCategory, selectDifficulty);
   document.body.appendChild(choice);
 
   start.style.display = "none";
   loadDropdowns();
 
   populateCategories();
-  console.log("Categories populated");
+
   populateDifficulties();
-  console.log("Difficulties populated");
+
   selectCategory.addEventListener("click", changeQuestions);
   selectDifficulty.addEventListener("click", changeQuestions);
+  continueToQuestionButton.addEventListener("click", renderQuestionPage);
 };
