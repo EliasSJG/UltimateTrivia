@@ -3,7 +3,7 @@
   flex-direction: column;
   margin-top: 2rem;
   align-items: center;
-  width: 50%;
+
   margin-left: auto;
   margin-right: auto;
 }
@@ -12,7 +12,7 @@
   display: flex;
   justify-content: space-between;
   margin-bottom: 2rem;
-  width: 100%;
+  width: 50%;
 }
 
 .answer-div {
@@ -20,4 +20,8 @@
   grid-template-columns: repeat(2, 1fr);
   gap: 3rem;
 }
-//Gör snyggare, ungefär så ska det se ut men det är dålig kod
+
+#question-title {
+  margin-left: 2rem;
+  margin-right: 2rem;
+}

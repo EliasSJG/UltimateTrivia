@@ -1,64 +1,81 @@
+import { renderChoiceButton } from "../../components/buttons/continuebutton";
+import {
+  askAudienceHelpline,
+  askFriendHelpline,
+  fiftyFiftyHelpline,
+  switchQuestionHelpline,
+} from "../../components/buttons/helpbutton";
+import {
+  getSelectedQuestion,
+  loadDropdowns,
+} from "../../components/dropdown/dropdown";
 import "./_question.scss";
 
 export const renderQuestionPage = () => {
+  const continueToChoiceButton = renderChoiceButton();
+  continueToChoiceButton.style.display = "none";
+
+  const answerDiv = document.createElement("div");
   const choice = document.querySelector("#choice") as HTMLDivElement;
+  const selectedQuestion = getSelectedQuestion();
 
-  choice.remove();
-
+  choice.style.display = "none";
   const heading = document.createElement("h1") as HTMLHeadingElement;
   const question = document.createElement("div") as HTMLDivElement;
 
   heading.classList.add("main-title");
   heading.innerHTML = "Question"; //change to api question
+  heading.id = "question-title";
 
   question.id = "question";
   question.classList.add("question");
 
-  //temporary
-
-  //need connection to api to call for each answer create a button.
-
-  const helplineButton = document.createElement("button");
-  const helplineButton2 = document.createElement("button");
-  const helplineButton3 = document.createElement("button");
-  const helplineButton4 = document.createElement("button");
-  helplineButton.classList.add("helpline");
-  helplineButton2.classList.add("helpline");
-  helplineButton3.classList.add("helpline");
-  helplineButton4.classList.add("helpline");
-
-  helplineButton.textContent = "IMG";
-  helplineButton2.textContent = "IMG";
-  helplineButton3.textContent = "IMG";
-  helplineButton4.textContent = "IMG";
-
-  const answerButton = document.createElement("button");
-  const answerButton2 = document.createElement("button");
-  const answerButton3 = document.createElement("button");
-  const answerButton4 = document.createElement("button");
-  answerButton.classList.add("answerbutton");
-  answerButton2.classList.add("answerbutton");
-  answerButton3.classList.add("answerbutton");
-  answerButton4.classList.add("answerbutton");
-
-  answerButton.textContent = "Answer 1";
-  answerButton2.textContent = "Answer 2";
-  answerButton3.textContent = "Answer 3";
-  answerButton4.textContent = "Answer 4";
-  //foreach incorrect answer and correct answer create a button, later
+  const askAudienceButton = askAudienceHelpline();
+  const askFriendButton = askFriendHelpline();
+  const fiftyFiftyButton = fiftyFiftyHelpline();
+  const SwitchQuestionButton = switchQuestionHelpline();
   const helplineDiv = document.createElement("div");
   helplineDiv.classList.add("helpline-div");
+  //foreach incorrect answer and correct answer create a button
+
+  heading.innerHTML = `${selectedQuestion.question}`;
+  console.log(selectedQuestion.correctAnswer);
+  const answers = [
+    ...selectedQuestion.incorrectAnswers,
+    selectedQuestion.correctAnswer,
+  ];
+  answers.sort(() => Math.random() - 0.5);
+  console.log(answers);
+
+  answers.forEach((answer) => {
+    const answerButton = document.createElement("button");
+    answerButton.classList.add("answerbutton");
+    answerButton.textContent = `${answer}`;
+
+    answerButton.addEventListener("click", () => {
+      if (answer === selectedQuestion.correctAnswer) {
+        continueToChoiceButton.style.display = "block";
+        answerButton.style.backgroundColor = "#3AF246";
+      } else {
+        alert("wrong");
+      }
+    });
+    answerDiv.appendChild(answerButton);
+  });
+
   helplineDiv.append(
-    helplineButton,
-    helplineButton2,
-    helplineButton3,
-    helplineButton4
+    askFriendButton,
+    fiftyFiftyButton,
+    SwitchQuestionButton,
+    askAudienceButton
   );
-  const answerDiv = document.createElement("div");
+
   answerDiv.classList.add("answer-div");
-  answerDiv.append(answerButton, answerButton2, answerButton3, answerButton4);
-  question.append(heading, helplineDiv, answerDiv);
-  //create 4 helpline buttons in helplinebutton.ts
-  //create 4 answer button in answerbutton.ts
+  question.append(heading, helplineDiv, answerDiv, continueToChoiceButton);
   document.body.appendChild(question);
+  continueToChoiceButton.addEventListener("click", () => {
+    question.remove();
+    choice.style.display = "flex";
+    loadDropdowns();
+  });
 };
