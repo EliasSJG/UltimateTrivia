@@ -55,7 +55,7 @@ export const renderChoicePage = () => {
 
   document.body.appendChild(choice);
 
-  start.remove();
+  start.remove(); //Potential problem
   loadDropdowns();
 
   populateCategories();

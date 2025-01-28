@@ -2,21 +2,31 @@ import "./_dropdown.scss";
 import { getQuestion, getCategory, getDifficulty } from "../../api/api";
 import categoryCorrection from "../../state/state";
 import { continueToQuestionButton } from "../../pages/choice/choice";
+import { Question } from "../../typings/typings";
 
 //DOM Elements
 
 export let selectQuestion: HTMLButtonElement;
 export let selectDifficulty: HTMLButtonElement;
 export let selectCategory: HTMLButtonElement;
+let selectedQuestion: Question;
 
 export const loadDropdowns = () => {
   selectQuestion = document.getElementById("getquestion") as HTMLButtonElement;
-  selectQuestion.innerHTML = "Select a Question";
   selectDifficulty = document.getElementById(
     "getdifficulty"
   ) as HTMLButtonElement;
-  selectQuestion.disabled = true;
   selectCategory = document.getElementById("getcategory") as HTMLButtonElement;
+
+  selectCategory.disabled = false;
+  selectCategory.innerHTML = "Select a Category";
+
+  selectQuestion.disabled = true;
+  selectQuestion.innerHTML = "Select a Question";
+
+  selectDifficulty.disabled = true;
+  selectDifficulty.innerHTML = "Select a Difficulty";
+  continueToQuestionButton.style.display = "none";
 };
 
 //TYPA UPP
@@ -27,7 +37,6 @@ export const populateCategories = async () => {
   const categoryOptionDiv = document.createElement("div");
 
   categoryOptionDiv.style.display = "none";
-  selectCategory.innerHTML = "Select a Category";
 
   categoryKeys.forEach((cate: string) => {
     const div = document.createElement("div");
@@ -37,7 +46,7 @@ export const populateCategories = async () => {
     div.addEventListener("click", () => {
       selectCategory.innerHTML = `<div>${cate}</div>`;
       selectCategory.disabled = true;
-      categoryOptionDiv.style.display = "none";
+
       selectDifficulty.disabled = false;
     });
 
@@ -58,7 +67,6 @@ export const populateDifficulties = async () => {
   const difficultyOptionDiv = document.createElement("div");
   difficultyOptionDiv.style.display = "none";
 
-  selectDifficulty.innerHTML = "Select a Difficulty";
   difficulties.forEach((difficulty) => {
     const div = document.createElement("div");
     div.innerHTML = difficulty;
@@ -67,7 +75,6 @@ export const populateDifficulties = async () => {
     div.addEventListener("click", () => {
       selectDifficulty.innerHTML = `<div>${difficulty}</div>`;
       selectDifficulty.disabled = true;
-      difficultyOptionDiv.style.display = "none";
     });
 
     difficultyOptionDiv.appendChild(div);
@@ -111,7 +118,8 @@ export const changeQuestions = async () => {
       div.addEventListener("click", () => {
         selectQuestion.innerHTML = `<div>${question.question}</div>`;
         selectQuestion.disabled = true;
-        questionOptionDiv.style.display = "none";
+
+        selectedQuestion = question;
 
         continueToQuestionButton.style.display = "block";
       });
@@ -125,3 +133,5 @@ export const changeQuestions = async () => {
     });
   }
 };
+
+export const getSelectedQuestion = () => selectedQuestion;

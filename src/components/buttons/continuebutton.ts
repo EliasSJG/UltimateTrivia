@@ -13,5 +13,6 @@ export const renderChoiceButton = () => {
   continueToChoiceButton.classList.add("continuebutton");
   continueToChoiceButton.innerHTML = "Continue";
   continueToChoiceButton.id = "next-page-choice";
+
   return continueToChoiceButton;
 };
