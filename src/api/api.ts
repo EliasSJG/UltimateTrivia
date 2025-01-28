@@ -1,4 +1,4 @@
-import { Question } from "../typings/typings";
+import { Category, Question } from "../typings/typings";
 
 //the diffrent api endpoints
 
@@ -23,9 +23,9 @@ import { Question } from "../typings/typings";
 //START HERE
 
 //TYPA UPP
-export const getCategory = async () => {
+export const getCategory = async (): Promise<Category> => {
   const response = await fetch("https://the-trivia-api.com/api/categories");
-  const data = await response.json();
+  const data: Category = await response.json();
 
   return data;
 };
@@ -43,10 +43,11 @@ export const getDifficulty = async () => {
 export const getQuestion = async (
   difficulty: string,
   category: string
-): Promise<Question> => {
+): Promise<Question[]> => {
   const response = await fetch(
-    `https://the-trivia-api.com/api/questions?difficulty=${difficulty}&categories=${category}&limit=10`
+    `https://the-trivia-api.com/api/questions?difficulty=${difficulty}&categories=${category}&limit=4`
   );
-  const data = await response.json();
+  const data: Question[] = await response.json();
+
   return data;
 };

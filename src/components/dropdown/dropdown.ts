@@ -1,6 +1,7 @@
 import "./_dropdown.scss";
 import { getQuestion, getCategory, getDifficulty } from "../../api/api";
 import categoryCorrection from "../../state/state";
+import { continueToQuestionButton } from "../../pages/choice/choice";
 
 //DOM Elements
 
@@ -14,7 +15,7 @@ export const loadDropdowns = () => {
   selectDifficulty = document.getElementById(
     "getdifficulty"
   ) as HTMLButtonElement;
-
+  selectQuestion.disabled = true;
   selectCategory = document.getElementById("getcategory") as HTMLButtonElement;
 };
 
@@ -24,7 +25,7 @@ export const populateCategories = async () => {
   const categoryKeys = Object.keys(categories);
 
   const categoryOptionDiv = document.createElement("div");
-  categoryOptionDiv.classList.add("custom-option-div");
+
   categoryOptionDiv.style.display = "none";
   selectCategory.innerHTML = "Select a Category";
 
@@ -37,6 +38,7 @@ export const populateCategories = async () => {
       selectCategory.innerHTML = `<div>${cate}</div>`;
       selectCategory.disabled = true;
       categoryOptionDiv.style.display = "none";
+      selectDifficulty.disabled = false;
     });
 
     categoryOptionDiv.appendChild(div);
@@ -52,9 +54,8 @@ export const populateCategories = async () => {
 
 export const populateDifficulties = async () => {
   const difficulties = await getDifficulty();
-
+  selectDifficulty.disabled = true;
   const difficultyOptionDiv = document.createElement("div");
-  difficultyOptionDiv.classList.add("custom-option-div");
   difficultyOptionDiv.style.display = "none";
 
   selectDifficulty.innerHTML = "Select a Difficulty";
@@ -92,7 +93,6 @@ export const changeQuestions = async () => {
   }
 
   const questionOptionDiv = document.createElement("div");
-  questionOptionDiv.classList.add("custom-option-div");
   questionOptionDiv.style.display = "none";
 
   const correctCategory = categoryCorrection[category];
@@ -112,6 +112,8 @@ export const changeQuestions = async () => {
         selectQuestion.innerHTML = `<div>${question.question}</div>`;
         selectQuestion.disabled = true;
         questionOptionDiv.style.display = "none";
+
+        continueToQuestionButton.style.display = "block";
       });
       questionOptionDiv.appendChild(div);
     });
