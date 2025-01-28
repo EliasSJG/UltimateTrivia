@@ -14,6 +14,9 @@ import {
 } from "../../components/buttons/continuebutton";
 import { renderQuestionPage } from "../question/question";
 
+export const continueToQuestionButton = renderQuestionButton();
+//do a file for global variables connected to DOM
+
 export const continueToChoiceButton = renderChoiceButton();
 const start = document.querySelector("#start") as HTMLDivElement;
 start.append(continueToChoiceButton);
@@ -40,10 +43,8 @@ export const renderChoicePage = () => {
   questionSelect.id = "getquestion";
   questionSelect.classList.add("custom-dropdown");
 
-  const continueToQuestionButton = renderQuestionButton();
-
   choice.style.display = "flex";
-
+  continueToQuestionButton.style.display = "none";
   choice.append(
     heading,
     categorySelect,
@@ -54,7 +55,7 @@ export const renderChoicePage = () => {
 
   document.body.appendChild(choice);
 
-  start.style.display = "none";
+  start.remove();
   loadDropdowns();
 
   populateCategories();

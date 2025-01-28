@@ -3,20 +3,21 @@
   flex-direction: column;
   margin-top: 2rem;
   align-items: center;
-  flex-wrap: wrap;
-  align-content: center;
+  width: 50%;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 .helpline-div {
-  display: grid;
-  grid-template-columns: 1fr 1fr 1fr 1fr;
-  grid-gap: 140px;
-  margin-bottom: 50px;
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 2rem;
+  width: 100%;
 }
 
 .answer-div {
   display: grid;
-  grid-template-columns: 1fr 1fr;
-  grid-gap: 80px;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 3rem;
 }
 //Gör snyggare, ungefär så ska det se ut men det är dålig kod

@@ -1,27 +1,15 @@
 .custom-dropdown {
-  border-radius: 3rem;
+  border-radius: 2rem;
   padding: 0.5rem;
   border: none;
   cursor: pointer;
   box-shadow: 2px 2px 2px;
   margin-bottom: 3rem;
-  width: 440px;
-
+  width: 500px;
   text-align-last: center;
 }
 
-select:focus {
-  outline: none;
-}
-
-// .custom-option-div {
-//   //maybe change styling
-// }
-.custom-option {
-  transition: background-color 0.3s ease-in;
-}
-
 .custom-option:hover {
-  background-color: #d8d8d8;
   cursor: pointer;
+  border-bottom: solid black 1px;
 }

@@ -1,6 +1,10 @@
 import "./_question.scss";
 
 export const renderQuestionPage = () => {
+  const choice = document.querySelector("#choice") as HTMLDivElement;
+
+  choice.remove();
+
   const heading = document.createElement("h1") as HTMLHeadingElement;
   const question = document.createElement("div") as HTMLDivElement;
 
@@ -11,6 +15,8 @@ export const renderQuestionPage = () => {
   question.classList.add("question");
 
   //temporary
+
+  //need connection to api to call for each answer create a button.
 
   const helplineButton = document.createElement("button");
   const helplineButton2 = document.createElement("button");
@@ -55,6 +61,4 @@ export const renderQuestionPage = () => {
   //create 4 helpline buttons in helplinebutton.ts
   //create 4 answer button in answerbutton.ts
   document.body.appendChild(question);
-  //gör så att choice tars bort
-  console.log("hello");
 };
