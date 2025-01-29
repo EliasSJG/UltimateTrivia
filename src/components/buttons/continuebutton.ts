@@ -16,3 +16,11 @@ export const renderChoiceButton = () => {
 
   return continueToChoiceButton;
 };
+export const renderStartButton = () => {
+  const continueToStartButton = document.createElement("button");
+  continueToStartButton.classList.add("continuebutton");
+  continueToStartButton.innerHTML = "Continue";
+  continueToStartButton.id = "next-page-start";
+
+  return continueToStartButton;
+};
