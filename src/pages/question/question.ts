@@ -1,19 +1,23 @@
-import { renderChoiceButton } from "../../components/buttons/continuebutton";
+import {
+  renderChoiceButton,
+  renderStartButton,
+} from "../../components/buttons/continuebutton";
 import {
   askAudienceHelpline,
   askFriendHelpline,
   fiftyFiftyHelpline,
   switchQuestionHelpline,
 } from "../../components/buttons/helpbutton";
-import {
-  getSelectedQuestion,
-  loadDropdowns,
-} from "../../components/dropdown/dropdown";
+import { getSelectedQuestion } from "../../components/dropdown/dropdown";
+import { renderChoicePage } from "../choice/choice";
 import "./_question.scss";
 
 export const renderQuestionPage = () => {
+  const start = document.querySelector("#start") as HTMLDivElement;
   const continueToChoiceButton = renderChoiceButton();
   continueToChoiceButton.style.display = "none";
+  const continueToStartButton = renderStartButton();
+  continueToStartButton.style.display = "none";
 
   const answerDiv = document.createElement("div");
   const choice = document.querySelector("#choice") as HTMLDivElement;
@@ -24,7 +28,7 @@ export const renderQuestionPage = () => {
   const question = document.createElement("div") as HTMLDivElement;
 
   heading.classList.add("main-title");
-  heading.innerHTML = "Question"; //change to api question
+  heading.innerHTML = "Question";
   heading.id = "question-title";
 
   question.id = "question";
@@ -36,7 +40,6 @@ export const renderQuestionPage = () => {
   const SwitchQuestionButton = switchQuestionHelpline();
   const helplineDiv = document.createElement("div");
   helplineDiv.classList.add("helpline-div");
-  //foreach incorrect answer and correct answer create a button
 
   heading.innerHTML = `${selectedQuestion.question}`;
   console.log(selectedQuestion.correctAnswer);
@@ -45,7 +48,6 @@ export const renderQuestionPage = () => {
     selectedQuestion.correctAnswer,
   ];
   answers.sort(() => Math.random() - 0.5);
-  console.log(answers);
 
   answers.forEach((answer) => {
     const answerButton = document.createElement("button");
@@ -53,11 +55,16 @@ export const renderQuestionPage = () => {
     answerButton.textContent = `${answer}`;
 
     answerButton.addEventListener("click", () => {
+      document.querySelectorAll(".answerbutton").forEach((button) => {
+        (button as HTMLButtonElement).disabled = true;
+      });
+
       if (answer === selectedQuestion.correctAnswer) {
         continueToChoiceButton.style.display = "block";
         answerButton.style.backgroundColor = "#3AF246";
       } else {
-        alert("wrong");
+        continueToStartButton.style.display = "block";
+        answerButton.style.backgroundColor = "#F54E4E";
       }
     });
     answerDiv.appendChild(answerButton);
@@ -71,11 +78,23 @@ export const renderQuestionPage = () => {
   );
 
   answerDiv.classList.add("answer-div");
-  question.append(heading, helplineDiv, answerDiv, continueToChoiceButton);
+  question.append(
+    heading,
+    helplineDiv,
+    answerDiv,
+    continueToChoiceButton,
+    continueToStartButton
+  );
   document.body.appendChild(question);
   continueToChoiceButton.addEventListener("click", () => {
+    question.style.display = "none";
+    choice.remove();
+    renderChoicePage();
+  });
+
+  continueToStartButton.addEventListener("click", () => {
+    choice.remove();
     question.remove();
-    choice.style.display = "flex";
-    loadDropdowns();
+    start.style.display = "flex";
   });
 };

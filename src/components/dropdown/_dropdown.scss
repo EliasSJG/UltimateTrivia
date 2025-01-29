@@ -1,3 +1,5 @@
+@use "../../style/abstracts/mixins" as *;
+
 .custom-dropdown {
   border-radius: 2rem;
   padding: 0.5rem;
@@ -7,9 +9,14 @@
   margin-bottom: 3rem;
   width: 500px;
   text-align-last: center;
+  background-color: white;
 }
 
 .custom-option:hover {
   cursor: pointer;
   border-bottom: solid black 1px;
+}
+
+.custom-dropdown:disabled {
+  @include disabledButton;
 }
