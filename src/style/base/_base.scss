@@ -5,9 +5,9 @@ body {
     $primary-gradientcolorblue,
     $primary-gradientcolorpurlple
   );
-  overflow: hidden;
+  background-size: 100% 100%;
+  background-attachment: fixed;
   height: 100vh;
-  min-height: 100vh;
 }
 
 .main-title {

@@ -8,8 +8,15 @@
   box-shadow: 2px 2px 2px;
   margin-bottom: 3rem;
   width: 500px;
-  text-align-last: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   background-color: white;
+
+  li {
+    text-align: left;
+    list-style: circle;
+  }
 }
 
 .custom-option:hover {
@@ -19,4 +26,11 @@
 
 .custom-dropdown:disabled {
   @include disabledButton;
+}
+
+.questionlist {
+  width: auto;
+  div {
+    border-bottom: solid 1px gray;
+  }
 }

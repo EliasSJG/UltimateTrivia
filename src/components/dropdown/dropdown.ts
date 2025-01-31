@@ -40,7 +40,7 @@ export const populateCategories = async () => {
 
   categoryKeys.forEach((cate: string) => {
     const div = document.createElement("div");
-    div.innerHTML = cate;
+    div.innerHTML = `<li>${cate}</li>`;
     div.classList.add("custom-option");
 
     div.addEventListener("click", () => {
@@ -69,7 +69,7 @@ export const populateDifficulties = async () => {
 
   difficulties.forEach((difficulty) => {
     const div = document.createElement("div");
-    div.innerHTML = difficulty;
+    div.innerHTML = `<li>${difficulty}</li>`;
     div.classList.add("custom-option");
 
     div.addEventListener("click", () => {
@@ -101,7 +101,7 @@ export const changeQuestions = async () => {
 
   const questionOptionDiv = document.createElement("div");
   questionOptionDiv.style.display = "none";
-
+  questionOptionDiv.classList.add("questionlist");
   const correctCategory = categoryCorrection[category];
 
   if (difficulty && correctCategory) {
@@ -112,7 +112,7 @@ export const changeQuestions = async () => {
 
     questions.forEach((question) => {
       const div = document.createElement("div");
-      div.innerHTML = question.question;
+      div.innerHTML = `<li>${question.question}</li>`;
       div.classList.add("custom-option");
 
       div.addEventListener("click", () => {

@@ -1,0 +1,13 @@
+@media (max-width: 1024px) {
+  #start {
+    align-items: center; /* This vertically centers the content */
+    height: 100vh; /* Full viewport height */
+    margin: 0;
+  }
+}
+
+@media (max-width: 391px) {
+  #start {
+    margin: 1rem !important;
+  }
+}
