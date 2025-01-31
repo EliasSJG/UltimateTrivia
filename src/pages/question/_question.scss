@@ -1,31 +1,26 @@
 #question {
   display: flex;
+  flex-wrap: wrap;
+  align-content: center;
+  justify-content: center;
+  height: 100vh;
+  margin-left: 1rem;
+  margin-right: 1rem;
   flex-direction: column;
-
   align-items: center;
-  width: 100%;
-  margin: 0;
 }
+
 .game-container {
-  width: auto;
+  width: clamp(250px, 50vw, 500px);
 }
 .helpline-div {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
+  display: flex;
+  justify-content: space-between;
   margin-bottom: 2rem;
-  width: 100%;
 }
 
 .answer-div {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
-  gap: 3rem;
-  width: 100%;
-}
-
-#question-title {
-  margin-left: 2rem;
-  margin-right: 2rem;
-  font-size: clamp(2.1rem, 5vw, 5rem);
-  -webkit-text-stroke-width: clamp(1px, 2vw, 12px);
+  gap: clamp(1.5rem, 2vw, 4rem);
 }

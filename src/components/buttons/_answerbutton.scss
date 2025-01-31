@@ -1,10 +1,7 @@
 @use "../../style/abstracts/mixins" as *;
 .answerbutton {
   @include button;
-  padding: 1rem;
-  font-size: 1.25rem;
-  width: auto;
-  height: auto;
+  height: 4rem;
 }
 .answerbutton:disabled {
   @include disabledButton;
