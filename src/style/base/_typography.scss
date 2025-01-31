@@ -1,16 +1,16 @@
 @use "../../style/abstracts/variables" as *;
 
 .continuebutton {
-  font-size: 1.25rem;
   font-family: $interactive-font;
   font-weight: $font-weight;
+  font-size: clamp(1rem, 2.5vw, 1.5rem);
 }
 
 .answerbutton {
-  font-size: 1.25rem;
+  font-size: clamp(1rem, 3.5vw, 1.25rem);
 }
 .main-title {
-  font-size: clamp(2.1rem, 5vw, 5rem);
+  font-size: clamp(1.8rem, 5vw, 5rem);
   font-family: $heading-font;
   color: white;
 
@@ -21,7 +21,7 @@
 
 .description-text {
   font-family: $text-font;
-  font-size: clamp(1.25rem, 3vw, 1.5rem);
+  font-size: clamp(1.2rem, 2vw, 1.5rem);
   color: white;
   font-weight: $font-weight;
 }
@@ -29,13 +29,15 @@
 .custom-dropdown {
   font-family: $interactive-font;
   font-weight: $font-weight;
-  font-size: 1.25rem;
+
+  font-size: clamp(1rem, 2vw, 1.5rem);
+
   div {
-    font-size: 1.2rem;
+    font-size: clamp(1em, 1.9vw, 1.3rem);
   }
 }
 
 #question-title {
-  font-size: 2.5rem;
-  -webkit-text-stroke-width: 8px;
+  font-size: clamp(1.6rem, 3vw, 3rem);
+  -webkit-text-stroke-width: clamp(1px, 1.2vw, 8px);
 }

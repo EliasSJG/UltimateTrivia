@@ -6,13 +6,12 @@
   border: none;
   cursor: pointer;
   box-shadow: 2px 2px 2px;
-  margin-bottom: 3rem;
-  width: auto;
+  margin-bottom: 2rem;
+  width: clamp(200px, 70%, 400px);
   display: flex;
   flex-direction: column;
   align-items: center;
   background-color: white;
-  width: 50%;
 
   li {
     text-align: left;
