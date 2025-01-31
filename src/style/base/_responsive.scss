@@ -1,12 +1,14 @@
 @media (max-width: 1024px) {
   #start {
-    align-items: center; /* This vertically centers the content */
-    height: 100vh; /* Full viewport height */
-    margin: 0;
+    align-items: center;
+    height: 100vh;
+  }
+  .custom-dropdown {
+    margin-bottom: 3rem;
   }
 }
 
-@media (max-width: 391px) {
+@media (max-width: 440px) {
   #start {
     margin: 1rem !important;
   }
