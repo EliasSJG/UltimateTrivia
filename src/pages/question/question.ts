@@ -18,6 +18,8 @@ export const renderQuestionPage = () => {
   continueToChoiceButton.style.display = "none";
   const continueToStartButton = renderStartButton();
   continueToStartButton.style.display = "none";
+  const gameContainer = document.createElement("div");
+  gameContainer.classList.add("game-container");
 
   const answerDiv = document.createElement("div");
   const choice = document.querySelector("#choice") as HTMLDivElement;
@@ -77,14 +79,16 @@ export const renderQuestionPage = () => {
     askAudienceButton
   );
 
+  gameContainer.append(helplineDiv, answerDiv);
+
   answerDiv.classList.add("answer-div");
   question.append(
     heading,
-    helplineDiv,
-    answerDiv,
+    gameContainer,
     continueToChoiceButton,
     continueToStartButton
   );
+
   document.body.appendChild(question);
   continueToChoiceButton.addEventListener("click", () => {
     question.style.display = "none";
