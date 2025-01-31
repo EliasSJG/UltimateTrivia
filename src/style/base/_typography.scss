@@ -10,19 +10,18 @@
   font-size: 1.25rem;
 }
 .main-title {
-  font-size: 5rem;
+  font-size: clamp(1.9rem, 5vw, 5rem);
   font-family: $heading-font;
   color: white;
 
-  -webkit-text-stroke-width: 12px;
+  -webkit-text-stroke-width: clamp(1px, 2vw, 12px);
   -webkit-text-stroke-color: black;
   paint-order: stroke fill;
-  color: white;
 }
 
 .description-text {
   font-family: $text-font;
-  font-size: 1.25rem;
+  font-size: clamp(1.25rem, 3vw, 1.5rem);
   color: white;
   font-weight: $font-weight;
 }
@@ -31,6 +30,9 @@
   font-family: $interactive-font;
   font-weight: $font-weight;
   font-size: 1.25rem;
+  div {
+    font-size: 1.2rem;
+  }
 }
 
 #question-title {

@@ -45,7 +45,7 @@ export const getQuestion = async (
   category: string
 ): Promise<Question[]> => {
   const response = await fetch(
-    `https://the-trivia-api.com/api/questions?difficulty=${difficulty}&categories=${category}&limit=4`
+    `https://the-trivia-api.com/api/questions?difficulty=${difficulty}&categories=${category}&limit=3`
   );
   const data: Question[] = await response.json();
 
