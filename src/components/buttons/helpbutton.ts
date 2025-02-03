@@ -17,7 +17,6 @@ export const askAudienceHelpline = () => {
 export const askFriendHelpline = () => {
   const helplineButton = document.createElement("button");
   helplineButton.classList.add("helpline");
-
   const icon = document.createElement("img");
   icon.src = callFriend;
   icon.alt = "Call A Friend Helpline";
@@ -34,6 +33,7 @@ export const fiftyFiftyHelpline = () => {
   icon.alt = "Fifty Fifty Helpline";
   icon.classList.add("helpline-img");
   helplineButton.appendChild(icon);
+
   return helplineButton;
 };
 export const switchQuestionHelpline = () => {

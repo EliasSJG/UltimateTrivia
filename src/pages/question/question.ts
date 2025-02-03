@@ -12,6 +12,7 @@ import { getSelectedQuestion } from "../../components/dropdown/dropdown";
 import { renderChoicePage } from "../choice/choice";
 import "./_question.scss";
 
+let helplineUsed = false;
 export const renderQuestionPage = () => {
   const start = document.querySelector("#start") as HTMLDivElement;
   const continueToChoiceButton = renderChoiceButton();
@@ -49,7 +50,30 @@ export const renderQuestionPage = () => {
     ...selectedQuestion.incorrectAnswers,
     selectedQuestion.correctAnswer,
   ];
+
   answers.sort(() => Math.random() - 0.5);
+
+  const helplineAnswerDiv = document.createElement("div");
+  helplineAnswerDiv.classList.add("helpline-answer-div");
+
+  if (helplineUsed) {
+    askFriendButton.style.display = "none";
+  }
+  askFriendButton.addEventListener("click", () => {
+    if (helplineUsed) return;
+    helplineUsed = true;
+    helplineAnswerDiv.style.display = "block";
+    askFriendButton.style.display = "none";
+    let friendAnswer: string;
+    if (Math.random() < 0.75) {
+      friendAnswer = selectedQuestion.correctAnswer;
+    } else {
+      const friendWrongAnswer = selectedQuestion.incorrectAnswers[0];
+
+      friendAnswer = friendWrongAnswer;
+    }
+    helplineAnswerDiv.innerHTML = `Friend - "I think that ${friendAnswer} is correct!"`;
+  });
 
   answers.forEach((answer) => {
     const answerButton = document.createElement("button");
@@ -83,6 +107,7 @@ export const renderQuestionPage = () => {
 
   answerDiv.classList.add("answer-div");
   question.append(
+    helplineAnswerDiv,
     heading,
     gameContainer,
     continueToChoiceButton,
@@ -92,11 +117,13 @@ export const renderQuestionPage = () => {
   document.body.appendChild(question);
   continueToChoiceButton.addEventListener("click", () => {
     question.style.display = "none";
+
     choice.remove();
     renderChoicePage();
   });
 
   continueToStartButton.addEventListener("click", () => {
+    helplineUsed = false;
     choice.remove();
     question.remove();
     start.style.display = "flex";
