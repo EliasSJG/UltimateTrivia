@@ -1,4 +1,4 @@
-const categoryCorrection: { [key: string]: string } = {
+export const categoryCorrection: { [key: string]: string } = {
   "Society & Culture": "society_and_culture",
   "Arts & Literature": "arts_and_literature",
   "Film & TV": "film_and_tv",
@@ -10,7 +10,16 @@ const categoryCorrection: { [key: string]: string } = {
   Music: "music",
   Science: "science",
 };
+export const totalPricePot = {
+  totalPrice: 0,
+};
 
-//Might then sperate them so for example sport is its own category and leisure is its own.
-export default categoryCorrection;
-//Gonna need state for the prize pot.
+export const pricePotAmounts = {
+  easy: 1000,
+  medium: 5000,
+  hard: 10000,
+};
+
+export const increaseMoney = (difficulty: "easy" | "medium" | "hard") => {
+  totalPricePot.totalPrice += pricePotAmounts[difficulty];
+};
