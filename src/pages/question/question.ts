@@ -46,7 +46,7 @@ export const renderQuestionPage = () => {
   const askAudienceButton = askAudienceHelpline();
   const askFriendButton = askFriendHelpline();
   const fiftyFiftyButton = fiftyFiftyHelpline();
-  const SwitchQuestionButton = switchQuestionHelpline();
+  const switchQuestionButton = switchQuestionHelpline();
   const helplineDiv = document.createElement("div");
   helplineDiv.classList.add("helpline-div");
 
@@ -123,6 +123,19 @@ export const renderQuestionPage = () => {
         .join("<br>");
   });
 
+  if (helplineUsed.switchQuestion) {
+    switchQuestionButton.style.display = "none";
+  }
+  switchQuestionButton.addEventListener("click", () => {
+    if (helplineUsed.switchQuestion) return;
+    helplineUsed.switchQuestion = true;
+    switchQuestionButton.style.display = "none";
+    question.style.display = "none";
+
+    choice.remove();
+    renderChoicePage();
+  });
+
   answers.forEach((answer) => {
     const answerButton = document.createElement("button");
     answerButton.classList.add("answerbutton");
@@ -147,7 +160,7 @@ export const renderQuestionPage = () => {
   helplineDiv.append(
     askFriendButton,
     fiftyFiftyButton,
-    SwitchQuestionButton,
+    switchQuestionButton,
     askAudienceButton
   );
 
@@ -173,6 +186,7 @@ export const renderQuestionPage = () => {
   continueToStartButton.addEventListener("click", () => {
     helplineUsed.askFriend = false;
     helplineUsed.askAudience = false;
+    helplineUsed.switchQuestion = false;
     choice.remove();
     question.remove();
     start.style.display = "flex";
