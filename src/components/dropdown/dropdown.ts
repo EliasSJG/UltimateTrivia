@@ -4,8 +4,6 @@ import categoryCorrection from "../../state/state";
 import { continueToQuestionButton } from "../../pages/choice/choice";
 import { Question } from "../../typings/typings";
 
-//DOM Elements
-
 export let selectQuestion: HTMLButtonElement;
 export let selectDifficulty: HTMLButtonElement;
 export let selectCategory: HTMLButtonElement;

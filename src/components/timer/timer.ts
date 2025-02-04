@@ -1,1 +1,0 @@
-import "./_timer.scss";
