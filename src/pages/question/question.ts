@@ -12,7 +12,13 @@ import { getSelectedQuestion } from "../../components/dropdown/dropdown";
 import { renderChoicePage } from "../choice/choice";
 import "./_question.scss";
 
-let helplineUsed = false;
+let helplineUsed = {
+  askFriend: false,
+  askAudience: false,
+  fiftyFifty: false,
+  switchQuestion: false,
+};
+
 export const renderQuestionPage = () => {
   const start = document.querySelector("#start") as HTMLDivElement;
   const continueToChoiceButton = renderChoiceButton();
@@ -56,16 +62,17 @@ export const renderQuestionPage = () => {
   const helplineAnswerDiv = document.createElement("div");
   helplineAnswerDiv.classList.add("helpline-answer-div");
 
-  if (helplineUsed) {
+  if (helplineUsed.askFriend) {
     askFriendButton.style.display = "none";
   }
   askFriendButton.addEventListener("click", () => {
-    if (helplineUsed) return;
-    helplineUsed = true;
+    if (helplineUsed.askFriend) return;
+    helplineUsed.askFriend = true;
     helplineAnswerDiv.style.display = "block";
     askFriendButton.style.display = "none";
+
     let friendAnswer: string;
-    if (Math.random() < 0.75) {
+    if (Math.random() < 0.65) {
       friendAnswer = selectedQuestion.correctAnswer;
     } else {
       const friendWrongAnswer = selectedQuestion.incorrectAnswers[0];
@@ -73,6 +80,47 @@ export const renderQuestionPage = () => {
       friendAnswer = friendWrongAnswer;
     }
     helplineAnswerDiv.innerHTML = `Friend - "I think that ${friendAnswer} is correct!"`;
+  });
+
+  if (helplineUsed.askAudience) {
+    askAudienceButton.style.display = "none";
+  }
+  askAudienceButton.addEventListener("click", () => {
+    if (helplineUsed.askAudience) return;
+    helplineUsed.askAudience = true;
+    helplineAnswerDiv.style.display = "block";
+    askAudienceButton.style.display = "none";
+
+    const correctAudienceAnswer = selectedQuestion.correctAnswer;
+    const incorrectAudienceAnswer = selectedQuestion.incorrectAnswers;
+
+    const answersPercentages: { [key: string]: number } = {};
+    let correctPercentage: number;
+    let remainingPercentages = 100;
+
+    if (Math.random() < 0.7) {
+      correctPercentage = Math.floor(Math.random() * 21) + 60;
+    } else {
+      correctPercentage = Math.floor(Math.random() * 31) + 10;
+    }
+
+    remainingPercentages -= correctPercentage;
+    answersPercentages[correctAudienceAnswer] = correctPercentage;
+    incorrectAudienceAnswer.forEach((answer, index) => {
+      if (index === incorrectAudienceAnswer.length - 1) {
+        answersPercentages[answer] = remainingPercentages;
+      } else {
+        const percent = Math.floor(Math.random() * remainingPercentages);
+        answersPercentages[answer] = percent;
+        remainingPercentages -= percent;
+      }
+    });
+
+    helplineAnswerDiv.innerHTML =
+      `Audience Poll: <br>` +
+      Object.entries(answersPercentages)
+        .map(([answer, percent]) => `${answer}: ${percent}%`)
+        .join("<br>");
   });
 
   answers.forEach((answer) => {
@@ -123,7 +171,8 @@ export const renderQuestionPage = () => {
   });
 
   continueToStartButton.addEventListener("click", () => {
-    helplineUsed = false;
+    helplineUsed.askFriend = false;
+    helplineUsed.askAudience = false;
     choice.remove();
     question.remove();
     start.style.display = "flex";
