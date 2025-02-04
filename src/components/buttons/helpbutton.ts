@@ -12,6 +12,7 @@ export const askAudienceHelpline = () => {
   icon.alt = "Ask The Audience Helpline";
   icon.classList.add("helpline-img");
   helplineButton.appendChild(icon);
+
   return helplineButton;
 };
 export const askFriendHelpline = () => {

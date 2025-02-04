@@ -136,6 +136,26 @@ export const renderQuestionPage = () => {
     renderChoicePage();
   });
 
+  if (helplineUsed.fiftyFifty) {
+    fiftyFiftyButton.style.display = "none";
+  }
+  fiftyFiftyButton.addEventListener("click", () => {
+    if (helplineUsed.fiftyFifty) return;
+    helplineUsed.fiftyFifty = true;
+    fiftyFiftyButton.style.display = "none";
+    helplineAnswerDiv.style.display = "block";
+
+    const randomIncorrectAnswer =
+      selectedQuestion.incorrectAnswers[
+        Math.floor(Math.random() * selectedQuestion.incorrectAnswers.length)
+      ];
+    const fiftyOptions = [
+      selectedQuestion.correctAnswer,
+      randomIncorrectAnswer,
+    ].sort(() => Math.random() - 0.5);
+    helplineAnswerDiv.innerHTML = `The answer is either ${fiftyOptions[0]} or ${fiftyOptions[1]}`;
+  });
+
   answers.forEach((answer) => {
     const answerButton = document.createElement("button");
     answerButton.classList.add("answerbutton");
@@ -187,6 +207,7 @@ export const renderQuestionPage = () => {
     helplineUsed.askFriend = false;
     helplineUsed.askAudience = false;
     helplineUsed.switchQuestion = false;
+    helplineUsed.fiftyFifty = false;
     choice.remove();
     question.remove();
     start.style.display = "flex";
