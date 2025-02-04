@@ -1,3 +1,4 @@
+import { pricePot } from "./components/progressbar/progressbar";
 import "./main.scss";
 
 import {
@@ -5,5 +6,8 @@ import {
   continueToChoiceButton,
 } from "./pages/choice/choice";
 
-continueToChoiceButton.addEventListener("click", renderChoicePage);
+continueToChoiceButton.addEventListener("click", () => {
+  renderChoicePage();
+  pricePot();
+});
 //create a file just for rendering

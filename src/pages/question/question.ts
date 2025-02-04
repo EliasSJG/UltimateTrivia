@@ -1,4 +1,4 @@
-import { answerButton } from "../../components/buttons/asnwerbutton";
+import { answerButton } from "../../components/buttons/answerbutton";
 import {
   renderChoiceButton,
   renderStartButton,
@@ -11,6 +11,7 @@ import {
   switchQuestionHelpline,
 } from "../../components/buttons/helpbutton";
 import { getSelectedQuestion } from "../../components/dropdown/dropdown";
+
 import { renderChoicePage } from "../choice/choice";
 import "./_question.scss";
 
@@ -70,11 +71,12 @@ export const renderQuestionPage = () => {
     choice.remove();
     renderChoicePage();
   });
-
+  const priceDivDelete = document.querySelector(".price-div") as HTMLDivElement;
   continueToStartButton.addEventListener("click", () => {
     resetHelplines();
     choice.remove();
     question.remove();
     start.style.display = "flex";
+    priceDivDelete.remove();
   });
 };

@@ -1,6 +1,6 @@
 import "./_dropdown.scss";
 import { getQuestion, getCategory, getDifficulty } from "../../api/api";
-import categoryCorrection from "../../state/state";
+import { categoryCorrection } from "../../state/state";
 import { continueToQuestionButton } from "../../pages/choice/choice";
 import { Question } from "../../typings/typings";
 
