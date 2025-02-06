@@ -34,7 +34,7 @@ ULTIMATE_PROJECT/
 ├── package.json
 ├── README.md
 ├── tsconfig.json
----
+
 ## Installation
 
 # Clone the repository
