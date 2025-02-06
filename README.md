@@ -60,4 +60,4 @@ npm install or npm i
 # Documenation
 
     https://the-trivia-api.com/docs/v2/
-```
+
