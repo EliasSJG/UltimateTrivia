@@ -15,25 +15,26 @@ UltimateTrivia is a fun quiz game similar to "Are You Smarter Than a Fifth Grade
 
 ## File Structure
 
+```plaintext
 ULTIMATE_PROJECT/
 ├── public/
 ├── src/
-│ ├── api/
-│ ├── assets/
-│ ├── components/
-│ ├── pages/
-│ ├── state/
-│ ├── style/
-│ ├── typings/
-│ ├── main.scss
-│ ├── main.ts
-│ ├── vite-env.d.ts
+│   ├── api/
+│   ├── assets/
+│   ├── components/
+│   ├── pages/
+│   ├── state/
+│   ├── style/
+│   ├── typings/
+│   ├── main.scss
+│   ├── main.ts
+│   ├── vite-env.d.ts
 ├── index.html
 ├── LICENSE
 ├── package.json
 ├── README.md
 ├── tsconfig.json
-
+```
 ## Installation
 
 # Clone the repository
@@ -59,3 +60,4 @@ npm install or npm i
 # Documenation
 
     https://the-trivia-api.com/docs/v2/
+
