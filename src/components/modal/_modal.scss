@@ -1,0 +1,27 @@
+@use "../../style/abstracts/variables" as *;
+.modal {
+  background-image: linear-gradient(
+    $primaryModal-gradientcolorred,
+    $primaryModal-gradientcolorpurlple
+  );
+  background-size: 100% 100%;
+  background-attachment: fixed;
+  height: 100vh;
+
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  align-content: center;
+  height: 100vh;
+  flex-direction: column;
+  padding-top: 3rem;
+  padding-bottom: 2rem;
+  padding-left: 1rem;
+  padding-right: 1rem;
+  .main-title {
+    margin-bottom: 2rem;
+  }
+  position: absolute;
+  top: 0;
+}
