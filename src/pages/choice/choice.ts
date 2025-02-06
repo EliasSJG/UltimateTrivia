@@ -10,15 +10,18 @@ import {
 } from "../../components/dropdown/dropdown";
 import {
   renderChoiceButton,
+  renderModalButton,
   renderQuestionButton,
 } from "../../components/buttons/continuebutton";
 import { renderQuestionPage } from "../question/question";
 
 export const continueToQuestionButton = renderQuestionButton();
 //do a file for global variables connected to DOM
-
-export const continueToChoiceButton = renderChoiceButton();
+const choice = document.querySelector("#choice") as HTMLDivElement;
 const start = document.querySelector("#start") as HTMLDivElement;
+const question = document.createElement("div") as HTMLDivElement;
+export const continueToChoiceButton = renderChoiceButton(question, choice);
+export const openModal = renderModalButton();
 start.append(continueToChoiceButton);
 
 export const renderChoicePage = () => {
@@ -50,7 +53,8 @@ export const renderChoicePage = () => {
     categorySelect,
     difficultySelect,
     questionSelect,
-    continueToQuestionButton
+    continueToQuestionButton,
+    openModal
   );
 
   document.body.appendChild(choice);

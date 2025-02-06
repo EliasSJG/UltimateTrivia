@@ -1,3 +1,4 @@
+import { openModal } from "../../pages/choice/choice";
 import { increaseMoney, totalPricePot } from "../../state/state";
 import { getSelectedQuestion } from "../dropdown/dropdown";
 import { updatePriceDisplay } from "../progressbar/progressbar";
@@ -34,11 +35,14 @@ export const answerButton = (
         updatePriceDisplay();
         continueToChoiceButton.style.display = "block";
         answerButton.style.backgroundColor = "#3AF246";
+        openModal.style.display = "block";
       } else {
+        updatePriceDisplay();
         continueToStartButton.style.display = "block";
         answerButton.style.backgroundColor = "#F54E4E";
         totalPricePot.totalPrice = 0;
-        updatePriceDisplay();
+
+        openModal.style.display = "none";
       }
     });
     answerDiv.appendChild(answerButton);

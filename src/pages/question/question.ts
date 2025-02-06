@@ -7,29 +7,36 @@ import {
   askAudienceHelpline,
   askFriendHelpline,
   fiftyFiftyHelpline,
-  resetHelplines,
   switchQuestionHelpline,
 } from "../../components/buttons/helpbutton";
 import { getSelectedQuestion } from "../../components/dropdown/dropdown";
 
-import { renderChoicePage } from "../choice/choice";
 import "./_question.scss";
 
 export const renderQuestionPage = () => {
+  const choice = document.querySelector("#choice") as HTMLDivElement;
   const start = document.querySelector("#start") as HTMLDivElement;
-  const continueToChoiceButton = renderChoiceButton();
+  const question = document.createElement("div") as HTMLDivElement;
+  const priceDivDelete = document.querySelector(".price-div") as HTMLDivElement;
+
+  const continueToChoiceButton = renderChoiceButton(question, choice);
   continueToChoiceButton.style.display = "none";
-  const continueToStartButton = renderStartButton();
+
+  const continueToStartButton = renderStartButton(
+    choice,
+    question,
+    start,
+    priceDivDelete
+  );
   continueToStartButton.style.display = "none";
+
   const gameContainer = document.createElement("div");
   gameContainer.classList.add("game-container");
 
-  const choice = document.querySelector("#choice") as HTMLDivElement;
   const selectedQuestion = getSelectedQuestion();
 
   choice.style.display = "none";
   const heading = document.createElement("h1") as HTMLHeadingElement;
-  const question = document.createElement("div") as HTMLDivElement;
 
   heading.classList.add("main-title");
   heading.innerHTML = "Question";
@@ -65,18 +72,4 @@ export const renderQuestionPage = () => {
   );
 
   document.body.appendChild(question);
-  continueToChoiceButton.addEventListener("click", () => {
-    question.style.display = "none";
-
-    choice.remove();
-    renderChoicePage();
-  });
-  const priceDivDelete = document.querySelector(".price-div") as HTMLDivElement;
-  continueToStartButton.addEventListener("click", () => {
-    resetHelplines();
-    choice.remove();
-    question.remove();
-    start.style.display = "flex";
-    priceDivDelete.remove();
-  });
 };
