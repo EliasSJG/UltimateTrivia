@@ -5,15 +5,12 @@ import {
   loadDropdowns,
   populateCategories,
   populateDifficulties,
-  selectCategory,
-  selectDifficulty,
 } from "../../components/dropdown/dropdown";
 import {
   renderChoiceButton,
   renderModalButton,
   renderQuestionButton,
 } from "../../components/buttons/continuebutton";
-import { renderQuestionPage } from "../question/question";
 
 export const continueToQuestionButton = renderQuestionButton();
 //do a file for global variables connected to DOM
@@ -29,30 +26,19 @@ export const renderChoicePage = () => {
   const choice = document.createElement("div") as HTMLDivElement;
 
   heading.classList.add("main-title");
-  heading.innerHTML = "Choose Your Question";
+  heading.textContent = "Choose Your Question";
 
   choice.id = "choice";
   choice.classList.add("choice-layout");
-
-  const categorySelect = document.createElement("button");
-  categorySelect.id = "getcategory";
-  categorySelect.classList.add("custom-dropdown");
-
-  const difficultySelect = document.createElement("button");
-  difficultySelect.id = "getdifficulty";
-  difficultySelect.classList.add("custom-dropdown");
-
-  const questionSelect = document.createElement("button");
-  questionSelect.id = "getquestion";
-  questionSelect.classList.add("custom-dropdown");
+  const { selectCategory, selectDifficulty, selectQuestion } = loadDropdowns();
 
   choice.style.display = "flex";
   continueToQuestionButton.style.display = "none";
   choice.append(
     heading,
-    categorySelect,
-    difficultySelect,
-    questionSelect,
+    selectCategory,
+    selectDifficulty,
+    selectQuestion,
     continueToQuestionButton,
     openModal
   );
@@ -61,13 +47,10 @@ export const renderChoicePage = () => {
 
   start.style.display = "none";
 
-  loadDropdowns();
-
   populateCategories();
 
   populateDifficulties();
 
   selectCategory.addEventListener("click", changeQuestions);
   selectDifficulty.addEventListener("click", changeQuestions);
-  continueToQuestionButton.addEventListener("click", renderQuestionPage);
 };

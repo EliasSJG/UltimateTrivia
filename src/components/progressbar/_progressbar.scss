@@ -1,9 +1,10 @@
+@use "../../style/abstracts/variables" as *;
 .price-div {
   width: 100%;
-  background-color: white;
+  background-color: $neutral-white;
   height: 3rem;
   display: flex;
-  align-items: center;
+  align-items: $center-position;
   position: absolute;
   top: 0;
 }

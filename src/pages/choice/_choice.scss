@@ -1,14 +1,4 @@
+@use "../../style/abstracts/mixins" as *;
 #choice {
-  display: none;
-  justify-content: center;
-  margin-top: 2rem;
-
-  align-items: center;
-  height: 100vh;
-}
-
-.choice-layout {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+  @include page;
 }

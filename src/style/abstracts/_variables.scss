@@ -1,12 +1,18 @@
 //Colors
 $primary-gradientcolorblue: #706eff;
 $primary-gradientcolorpurlple: #b349ff;
-
 $primaryModal-gradientcolorred: #f54e4e;
 $primaryModal-gradientcolorpurlple: #f046ce;
-//Spacing
+$neutral-black: black;
+$neutral-white: white;
 
-//Borders
+//Spacing
+$spacing-super-small: 0.5rem;
+$spacing-small: 1rem;
+$spacing-medium: 1.5rem;
+$spacing-big: 2rem;
+
+$center-position: center;
 
 //FONTS
 @import url("https://fonts.googleapis.com/css2?family=Luckiest+Guy&family=Open+Sans:ital,wght@0,300..800;1,300..800&family=Quicksand:wght@300..700&display=swap");

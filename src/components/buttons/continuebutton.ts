@@ -1,62 +1,64 @@
 import { renderChoicePage } from "../../pages/choice/choice";
+import { renderQuestionPage } from "../../pages/question/question";
 import { totalPricePot } from "../../state/state";
 import { createLeaveWithMoney } from "../modal/modal";
-
 import "./_continuebutton.scss";
 import { resetHelplines } from "./helpbutton";
 
-export const renderQuestionButton = () => {
-  const continueToQuestionButton = document.createElement("button");
-  continueToQuestionButton.classList.add("continuebutton");
-  continueToQuestionButton.innerHTML = "Continue To Question";
-  continueToQuestionButton.id = "next-page-question";
-  return continueToQuestionButton;
+//Creating button
+export const createButton = (
+  id: string,
+  textContent: string,
+  clicker: () => void
+): HTMLButtonElement => {
+  const button = document.createElement("button");
+  button.classList.add("continuebutton");
+  button.textContent = textContent;
+  button.id = id;
+  button.addEventListener("click", clicker);
+  return button;
 };
 
+//Go to question page button
+export const renderQuestionButton = () => {
+  return createButton("next-page-question", "Continue To Question", () => {
+    renderQuestionPage();
+  });
+};
+
+//Go to choice page button
 export const renderChoiceButton = (
   question: HTMLDivElement,
   choice: HTMLDivElement
 ) => {
-  const continueToChoiceButton = document.createElement("button");
-  continueToChoiceButton.classList.add("continuebutton");
-  continueToChoiceButton.innerHTML = "Continue To Choice";
-  continueToChoiceButton.id = "next-page-choice";
-
-  continueToChoiceButton.addEventListener("click", () => {
+  return createButton("next-page-choice", "Continue To Choice", () => {
     question.style.display = "none";
     if (choice) {
       choice.remove();
     }
     renderChoicePage();
   });
-  return continueToChoiceButton;
 };
 
+//Open modal/leave with money page
 export const renderModalButton = () => {
-  const continueToModalButton = document.createElement("button");
-  continueToModalButton.classList.add("continuebutton");
-  continueToModalButton.innerHTML = "Leave With Money";
-  continueToModalButton.id = "next-page-modal";
-
-  continueToModalButton.addEventListener("click", () => {
+  return createButton("next-page-modal", "Leave With Money", () => {
     createLeaveWithMoney();
   });
-  return continueToModalButton;
 };
+
+//Go to start page button
 export const renderStartButton = (
   choice: HTMLDivElement,
   question: HTMLDivElement,
   start: HTMLDivElement,
   priceDivDelete: HTMLDivElement
 ) => {
-  const continueToStartButton = document.createElement("button");
-  continueToStartButton.classList.add("continuebutton");
-  continueToStartButton.innerHTML = "Continue To Start";
-  continueToStartButton.id = "next-page-start";
-  const modalButton = document.querySelector(
-    "#next-page-modal"
-  ) as HTMLButtonElement;
-  continueToStartButton.addEventListener("click", () => {
+  return createButton("next-page-start", "Continue To Start", () => {
+    const modalButton = document.querySelector(
+      "#next-page-modal"
+    ) as HTMLButtonElement;
+
     resetHelplines();
     choice.remove();
     question.remove();
@@ -65,5 +67,4 @@ export const renderStartButton = (
     totalPricePot.totalPrice = 0;
     modalButton.style.display = "none";
   });
-  return continueToStartButton;
 };

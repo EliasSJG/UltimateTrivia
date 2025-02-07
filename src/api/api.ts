@@ -1,5 +1,5 @@
 import { Category, Question } from "../typings/typings";
-
+//Category endpoint
 export const getCategory = async (): Promise<Category> => {
   const response = await fetch("https://the-trivia-api.com/api/categories");
   const data: Category = await response.json();
@@ -7,6 +7,7 @@ export const getCategory = async (): Promise<Category> => {
   return data;
 };
 
+//Difficulty endpoint
 export const getDifficulty = async () => {
   const response = await fetch("https://the-trivia-api.com/api/questions");
 
@@ -17,6 +18,7 @@ export const getDifficulty = async () => {
   return difficulties;
 };
 
+//Specific question endpoint
 export const getQuestion = async (
   difficulty: string,
   category: string

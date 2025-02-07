@@ -21,7 +21,6 @@ export const renderQuestionPage = () => {
 
   const continueToChoiceButton = renderChoiceButton(question, choice);
   continueToChoiceButton.style.display = "none";
-
   const continueToStartButton = renderStartButton(
     choice,
     question,
@@ -36,20 +35,18 @@ export const renderQuestionPage = () => {
   const selectedQuestion = getSelectedQuestion();
 
   choice.style.display = "none";
-  const heading = document.createElement("h1") as HTMLHeadingElement;
 
+  const heading = document.createElement("h1") as HTMLHeadingElement;
   heading.classList.add("main-title");
-  heading.innerHTML = "Question";
+  heading.textContent = "Question";
   heading.id = "question-title";
+  heading.textContent = `${selectedQuestion.question}`;
 
   question.id = "question";
   question.classList.add("question");
 
   const helplineDiv = document.createElement("div");
   helplineDiv.classList.add("helpline-div");
-
-  heading.innerHTML = `${selectedQuestion.question}`;
-
   const helplineAnswerDiv = document.createElement("div");
   helplineAnswerDiv.classList.add("helpline-answer-div");
 

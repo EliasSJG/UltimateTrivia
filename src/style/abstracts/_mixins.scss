@@ -1,6 +1,7 @@
+@use "../../style/abstracts/variables" as *;
 @mixin button($border-radius: 20px) {
   border: none;
-  background-color: white;
+  background-color: $neutral-white;
   transition: background-color 0.3s ease-in;
   box-shadow: 2px 2px 2px;
   border-radius: $border-radius;
@@ -14,4 +15,27 @@
   opacity: 0.7;
   cursor: not-allowed;
   color: inherit;
+}
+@mixin page() {
+  display: flex;
+  justify-content: $center-position;
+  align-items: $center-position;
+  height: 100vh;
+  align-content: $center-position;
+  margin: 0 $spacing-small;
+  padding: $spacing-small 0;
+  flex-direction: column;
+}
+
+@mixin background($primary1, $primary2) {
+  @include page;
+  background-image: linear-gradient($primary1, $primary2);
+  background-size: 100% 100%;
+  background-attachment: fixed;
+}
+
+@mixin typography($font, $weight, $size) {
+  font-family: $font;
+  font-weight: $weight;
+  font-size: $size;
 }

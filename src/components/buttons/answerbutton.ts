@@ -4,20 +4,24 @@ import { getSelectedQuestion } from "../dropdown/dropdown";
 import { updatePriceDisplay } from "../progressbar/progressbar";
 import "./_answerbutton.scss";
 
+//The answer buttons in question page
 export const answerButton = (
   continueToChoiceButton: HTMLButtonElement,
   continueToStartButton: HTMLButtonElement
 ) => {
   const answerDiv = document.createElement("div");
   answerDiv.classList.add("answer-div");
+
+  //getting user selected question
   const selectedQuestion = getSelectedQuestion();
   console.log(selectedQuestion.correctAnswer);
   const answers = [
     ...selectedQuestion.incorrectAnswers,
     selectedQuestion.correctAnswer,
   ];
+  //randomizing position
   answers.sort(() => Math.random() - 0.5);
-
+  //creating a button for each answer
   answers.forEach((answer) => {
     const answerButton = document.createElement("button");
     answerButton.classList.add("answerbutton");
@@ -27,8 +31,9 @@ export const answerButton = (
       document.querySelectorAll(".answerbutton").forEach((button) => {
         (button as HTMLButtonElement).disabled = true;
       });
-
+      //checking if user has correct or false
       if (answer === selectedQuestion.correctAnswer) {
+        //depending on difficulty increase the money by that difficulty amount
         increaseMoney(
           selectedQuestion.difficulty as "easy" | "medium" | "hard"
         );

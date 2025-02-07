@@ -1,36 +1,40 @@
 @use "../../style/abstracts/variables" as *;
-
+@use "../../style/abstracts/mixins" as *;
 .continuebutton {
-  font-family: $interactive-font;
-  font-weight: $font-weight;
-  font-size: clamp(1rem, 2.5vw, 1.5rem);
+  @include typography(
+    $interactive-font,
+    $font-weight,
+    clamp(1rem, 2.5vw, 1.5rem)
+  );
 }
 
 .answerbutton {
-  font-size: clamp(1rem, 3.5vw, 1.25rem);
+  @include typography(
+    $interactive-font,
+    $font-weight,
+    clamp(1rem, 3.5vw, 1.25rem)
+  );
 }
-.main-title {
-  font-size: clamp(1.8rem, 5vw, 5rem);
-  font-family: $heading-font;
-  color: white;
 
+.main-title {
+  @include typography($heading-font, $font-weight, clamp(1.8rem, 5vw, 5rem));
+  color: $neutral-white;
   -webkit-text-stroke-width: clamp(1px, 2vw, 12px);
-  -webkit-text-stroke-color: black;
+  -webkit-text-stroke-color: $neutral-black;
   paint-order: stroke fill;
 }
 
 .description-text {
-  font-family: $text-font;
-  font-size: clamp(1.2rem, 2vw, 1.5rem);
-  color: white;
-  font-weight: $font-weight;
+  @include typography($text-font, $font-weight, clamp(1.2rem, 2vw, 1.5rem));
+  color: $neutral-white;
 }
 
 .custom-dropdown {
-  font-family: $interactive-font;
-  font-weight: $font-weight;
-
-  font-size: clamp(1rem, 2vw, 1.5rem);
+  @include typography(
+    $interactive-font,
+    $font-weight,
+    clamp(1rem, 2vw, 1.5rem)
+  );
 
   div {
     font-size: clamp(1em, 1.9vw, 1.3rem);

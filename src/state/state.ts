@@ -10,7 +10,7 @@ export const categoryCorrection: { [key: string]: string } = {
   Music: "music",
   Science: "science",
 };
-export const totalPricePot = {
+export const totalPricePot: { totalPrice: number } = {
   totalPrice: 0,
 };
 
