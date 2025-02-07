@@ -1,18 +1,21 @@
 @use "../../style/abstracts/mixins" as *;
-
+@use "../../style/abstracts/variables" as *;
 .custom-dropdown {
-  border-radius: 2rem;
-  padding: 0.5rem;
-  border: none;
-  cursor: pointer;
-  box-shadow: 2px 2px 2px;
-  margin-bottom: 2rem;
+  @include button($spacing-big);
+
+  padding: $spacing-super-small;
+  margin-bottom: $spacing-big;
   width: clamp(200px, 70%, 400px);
   display: flex;
   flex-direction: column;
-  align-items: center;
-  background-color: white;
-
+  align-items: $center-position;
+  div {
+    width: auto;
+    padding: 0.25rem;
+    div {
+      border-bottom: solid 1px gray;
+    }
+  }
   li {
     text-align: left;
     list-style: circle;
@@ -20,18 +23,9 @@
 }
 
 .custom-option:hover {
-  cursor: pointer;
-  border-bottom: solid black 1px;
+  border-bottom: solid $neutral-black 1px;
 }
 
 .custom-dropdown:disabled {
   @include disabledButton;
-}
-
-.questionlist {
-  width: auto;
-  padding: 0.5rem;
-  div {
-    border-bottom: solid 1px gray;
-  }
 }

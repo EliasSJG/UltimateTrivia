@@ -1,10 +1,9 @@
 @use "../../style/abstracts/mixins" as *;
-
+@use "../../style/abstracts/variables" as *;
 .continuebutton {
   @include button;
   padding: 0.25em 3rem;
-  margin-bottom: 1.5rem;
-  margin-top: 1.5rem;
+  margin: $spacing-medium 0;
 }
 
 #next-page-modal {

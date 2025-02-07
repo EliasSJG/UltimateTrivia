@@ -1,6 +1,6 @@
 # UltimateTrivia
 
-A School Project about a quiz app built with TypeScript, SCSS, and HTML. This project is created with "The Trivia API".
+A School Project about a quiz app built with TypeScript, SCSS, HTML, Vite. This project is created with "The Trivia API".
 
 ## Description
 
@@ -35,6 +35,7 @@ ULTIMATE_PROJECT/
 ├── README.md
 ├── tsconfig.json
 ```
+
 ## Installation
 
 # Clone the repository
@@ -57,7 +58,16 @@ npm install or npm i
 
     This project is licensed under the MIT License.
 
-# Documenation
+# Documentation
 
     https://the-trivia-api.com/docs/v2/
+    Im using the endpoints
+    https://the-trivia-api.com/api/categories
+    https://the-trivia-api.com/api/questions
 
+    Trivia questions based on difficulty and category
+    https://the-trivia-api.com/api/questions?difficulty=easy&categories=general_knowledge&limit=3
+
+# LinkedIn
+
+    https://www.linkedin.com/in/elias-gustafsson-3b9315327/

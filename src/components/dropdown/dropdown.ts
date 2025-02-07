@@ -4,130 +4,126 @@ import { categoryCorrection } from "../../state/state";
 import { continueToQuestionButton } from "../../pages/choice/choice";
 import { Question } from "../../typings/typings";
 
+//Dropdown variables
 export let selectQuestion: HTMLButtonElement;
 export let selectDifficulty: HTMLButtonElement;
 export let selectCategory: HTMLButtonElement;
 let selectedQuestion: Question;
 
-export const loadDropdowns = () => {
-  selectQuestion = document.getElementById("getquestion") as HTMLButtonElement;
-  selectDifficulty = document.getElementById(
-    "getdifficulty"
-  ) as HTMLButtonElement;
-  selectCategory = document.getElementById("getcategory") as HTMLButtonElement;
+//Creating dropdown button
+export const CreateDropdownButton = (id: string, text: string) => {
+  const button = document.createElement("button");
+  button.id = id;
+  button.classList.add("custom-dropdown");
+  button.textContent = text;
 
-  selectCategory.disabled = false;
-  selectCategory.innerHTML = "Select a Category";
-
-  selectQuestion.disabled = true;
-  selectQuestion.innerHTML = "Select a Question";
-
-  selectDifficulty.disabled = true;
-  selectDifficulty.innerHTML = "Select a Difficulty";
-  continueToQuestionButton.style.display = "none";
+  return button;
 };
 
-//TYPA UPP
+//Loading in standard dropdown
+export const loadDropdowns = () => {
+  selectCategory = CreateDropdownButton(`getcategory`, `Select a Category`);
+  selectDifficulty = CreateDropdownButton(
+    `getdifficulty`,
+    `Select a Difficulty`
+  );
+  selectQuestion = CreateDropdownButton(`getquestion`, `Select a Question`);
+
+  selectCategory.disabled = false;
+  selectCategory.textContent = "Select a Category";
+
+  selectQuestion.disabled = true;
+  selectQuestion.textContent = "Select a Question";
+
+  selectDifficulty.disabled = true;
+  selectDifficulty.textContent = "Select a Difficulty";
+  continueToQuestionButton.style.display = "none";
+  return { selectCategory, selectDifficulty, selectQuestion };
+};
+
+//Creating options in dropdown
+const createDropdown = (
+  button: HTMLButtonElement,
+  items: string[] | Question[],
+  clicker: (selected: string | Question) => void
+) => {
+  const optionDiv = document.createElement("div");
+  optionDiv.style.display = "none";
+
+  items.forEach((item) => {
+    const div = document.createElement("div");
+    //Seeing if item is a string or a question
+    if (typeof item === "string") {
+      div.innerHTML = `<li>${item}</li>`;
+    } else {
+      div.innerHTML = `<li>${item.question}</li>`;
+    }
+    div.classList.add("custom-option");
+
+    //Seeing the chosen option
+    div.addEventListener("click", () => {
+      button.innerHTML = `<div>${
+        typeof item === "string" ? item : item.question
+      }</div>`;
+      button.disabled = true;
+      clicker(item);
+    });
+
+    optionDiv.appendChild(div);
+  });
+
+  button.appendChild(optionDiv);
+  //Toggle, close and open dropdown button
+  button.addEventListener("click", () => {
+    optionDiv.style.display =
+      optionDiv.style.display === "block" ? "none" : "block";
+  });
+};
+
+//Populate category
 export const populateCategories = async () => {
+  //Getting api category
   const categories = await getCategory();
   const categoryKeys = Object.keys(categories);
 
-  const categoryOptionDiv = document.createElement("div");
-
-  categoryOptionDiv.style.display = "none";
-
-  categoryKeys.forEach((cate: string) => {
-    const div = document.createElement("div");
-    div.innerHTML = `<li>${cate}</li>`;
-    div.classList.add("custom-option");
-
-    div.addEventListener("click", () => {
-      selectCategory.innerHTML = `<div>${cate}</div>`;
-      selectCategory.disabled = true;
-
-      selectDifficulty.disabled = false;
-    });
-
-    categoryOptionDiv.appendChild(div);
-  });
-
-  selectCategory.appendChild(categoryOptionDiv);
-
-  selectCategory.addEventListener("click", () => {
-    categoryOptionDiv.style.display =
-      categoryOptionDiv.style.display === "block" ? "none" : "block";
+  createDropdown(selectCategory, categoryKeys, () => {
+    selectDifficulty.disabled = false;
   });
 };
 
+//Populate difficulty and selecting
 export const populateDifficulties = async () => {
+  //Getting api difficulty
   const difficulties = await getDifficulty();
-  selectDifficulty.disabled = true;
-  const difficultyOptionDiv = document.createElement("div");
-  difficultyOptionDiv.style.display = "none";
 
-  difficulties.forEach((difficulty) => {
-    const div = document.createElement("div");
-    div.innerHTML = `<li>${difficulty}</li>`;
-    div.classList.add("custom-option");
-
-    div.addEventListener("click", () => {
-      selectDifficulty.innerHTML = `<div>${difficulty}</div>`;
-      selectDifficulty.disabled = true;
-    });
-
-    difficultyOptionDiv.appendChild(div);
-  });
-  selectDifficulty.appendChild(difficultyOptionDiv);
-
-  selectDifficulty.addEventListener("click", () => {
-    difficultyOptionDiv.style.display =
-      difficultyOptionDiv.style.display === "block" ? "none" : "block";
-  });
+  createDropdown(selectDifficulty, difficulties, () => {});
 };
 
+//Populating question
 export const changeQuestions = async () => {
-  //change, innertext to better
+  //Collecting user chosen category and difficulty
   const difficulty = selectDifficulty.innerText.trim();
   const category = selectCategory.innerText.trim();
-
+  //If it is standard on button then ignore
   if (
     difficulty === "Select a Difficulty" ||
     category === "Select a Category"
   ) {
     return;
   }
-
-  const questionOptionDiv = document.createElement("div");
-  questionOptionDiv.style.display = "none";
-  questionOptionDiv.classList.add("questionlist");
+  //Helping api finding correct category option in state
   const correctCategory = categoryCorrection[category];
 
   if (difficulty && correctCategory) {
+    //Getting api questions
     const questions = await getQuestion(difficulty, correctCategory);
-    console.log(questions);
-
     selectQuestion.disabled = false;
 
-    questions.forEach((question) => {
-      const div = document.createElement("div");
-      div.innerHTML = `<li>${question.question}</li>`;
-      div.classList.add("custom-option");
-
-      div.addEventListener("click", () => {
-        selectQuestion.innerHTML = `<div>${question.question}</div>`;
-        selectQuestion.disabled = true;
-
-        selectedQuestion = question;
-
-        continueToQuestionButton.style.display = "block";
-      });
-      questionOptionDiv.appendChild(div);
-    });
-    selectQuestion.appendChild(questionOptionDiv);
-
-    selectQuestion.addEventListener("click", () => {
-      questionOptionDiv.style.display =
-        questionOptionDiv.style.display === "block" ? "none" : "block";
+    createDropdown(selectQuestion, questions, (question) => {
+      selectedQuestion = question as Question;
+      selectQuestion.innerHTML = `<div>${selectedQuestion.question}</div>`;
+      selectQuestion.disabled = true;
+      continueToQuestionButton.style.display = "block";
     });
   }
 };

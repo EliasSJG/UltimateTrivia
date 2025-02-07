@@ -1,15 +1,9 @@
+@use "../../style/abstracts/mixins" as *;
+@use "../../style/abstracts/variables" as *;
 #start {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  align-items: center;
-  align-content: center;
-  height: 100vh;
-  margin: 0rem 2rem 0rem 2rem;
-  padding-top: 3rem;
-  padding-bottom: 2rem;
+  @include page;
 }
 
 .main-title {
-  margin-bottom: 2rem;
+  margin-bottom: $spacing-big;
 }

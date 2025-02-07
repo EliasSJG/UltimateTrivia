@@ -1,15 +1,7 @@
+@use "../../style/abstracts/mixins" as *;
+@use "../../style/abstracts/variables" as *;
 #question {
-  display: flex;
-
-  align-content: center;
-  justify-content: center;
-  height: 100vh;
-  margin-left: 1rem;
-  margin-right: 1rem;
-  flex-direction: column;
-  align-items: center;
-  padding-top: 1rem;
-  padding-bottom: 1rem;
+  @include page;
 }
 
 .game-container {
@@ -18,7 +10,7 @@
 .helpline-div {
   display: flex;
   justify-content: space-between;
-  margin-bottom: 2rem;
+  margin-bottom: $spacing-big;
 }
 
 .answer-div {
@@ -28,11 +20,11 @@
 }
 
 .helpline-answer-div {
-  padding: 1rem 1rem;
+  padding: $spacing-small $spacing-small;
   border: none;
-  background-color: white;
+  background-color: $neutral-white;
   box-shadow: 2px 2px 2px;
-  border-radius: 20px;
+  border-radius: $spacing-big;
   display: none;
-  margin-bottom: 1rem;
+  margin-bottom: $spacing-small;
 }
