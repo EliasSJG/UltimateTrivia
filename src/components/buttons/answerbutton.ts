@@ -31,6 +31,10 @@ export const answerButton = (
       document.querySelectorAll(".answerbutton").forEach((button) => {
         (button as HTMLButtonElement).disabled = true;
       });
+
+      document.querySelectorAll(".helpline").forEach((helplineButton) => {
+        (helplineButton as HTMLButtonElement).disabled = true;
+      });
       //checking if user has correct or false
       if (answer === selectedQuestion.correctAnswer) {
         //depending on difficulty increase the money by that difficulty amount
