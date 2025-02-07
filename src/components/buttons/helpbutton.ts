@@ -1,13 +1,13 @@
 import "./_helpbutton.scss";
-import askAudience from "../../assets/AskTheAudienceHelpline.svg";
-import callFriend from "../../assets/CallAFriendHelpline.svg";
+import askAudience from "../../assets/AskTheAudienceHelpline.png";
+import callFriend from "../../assets/CallAFriendHelpline.png";
 import fiftyFifty from "../../assets/FiftyFiftyHelpline.svg";
-import switchQuestion from "../../assets/SwitchQuestionHelpline.svg";
+import switchQuestion from "../../assets/SwitchQuestionHelpline.png";
 import { getSelectedQuestion } from "../dropdown/dropdown";
 import { renderChoicePage } from "../../pages/choice/choice";
 
 //Checking if helpline is used
-let helplineUsed = {
+export let helplineUsed = {
   askFriend: false,
   askAudience: false,
   fiftyFifty: false,
